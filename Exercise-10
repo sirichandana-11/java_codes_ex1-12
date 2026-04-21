@@ -1,0 +1,29 @@
+/*Exercise-10: Programs on IO Streams, Reading & Writing Data, Serialization Sample
+Programs
+a. Write a Java program to read data from Employee file and print highest salary
+employee information. (Employee File Contains: ID, name, Dept, Salary).*/
+import java.io.*;
+class Ex2 {
+    public static void main(String[] args) throws IOException {
+        FileReader f=new FileReader("emp.txt");
+        BufferedReader b =new BufferedReader(f);
+        String line,eid="",ename="",dept="",sal="";
+        int max=0,salary=0;
+        while((line=b.readLine())!=null){
+	    String s[]=line.split(" ");
+	    if(s[3].equals("sal")) {continue;}
+	    salary=Integer.parseInt(s[3]);
+	    if(salary>max){
+		max=salary;
+		eid=s[0];
+		ename=s[1];
+		dept=s[2];
+		sal=s[3];
+		}
+        }
+     System.out.println("Highest salary: " + sal);
+     System.out.println("Employee ID: " + eid);
+     System.out.println("Name: " + ename);
+     System.out.println("Department: " + dept);
+}
+}
